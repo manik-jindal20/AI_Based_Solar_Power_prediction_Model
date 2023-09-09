@@ -1,4 +1,4 @@
-__author__ = 'khushboo_agarwal'
+
 
 #import libraries
 import math
@@ -11,48 +11,6 @@ from pylab import *
 import cv2
 import random
 
-'''
-1. Lucas-Kanade method is basically an estimate of the movement of interesting
-features in successive images of a scene. 
-
-2. Lucas-Kanade assumes 
-	a) 	that the intensity of the pixel does not change of a pixel
-   		when it moves from frame1(I1) to frame(I2) with displacement (u,v):
-   		I1(x,y) = I2(x+u, y+v) 
-   	b) 	small motion, i.e (u,v)< 1 pixel
-		expanding I2 in Taylor series, we get
-		I2(x+u, y+v) = I2(x,y) + I2x(u) + I2y(v) + higher_order_terms
-		             ~ I2(x,y) + I2x(u) + I2y(v)
-    
-
-
-3. Lucas-Kanade associate a movement vector (u,v) to 
-every pixel in a scene obtained by comparing the two consecutive images or frames. 
-
-4. works by trying to guess in which direction an object has moved so that local
-changes in intensity can be explained. 
-
-5. Optical Flow has a constraint equation to be solved;
-	Ix.u + Iy.v +It = 0 ; (this equation is obtained by substituting 2b in 2a)
-	where,
-		Ix : derivative of I in x-direction
-		Iy : derivative of I in y-direction
-		It : derivative of I w.r.t time
-
-		Ix and Iy are image gradients, and It is along t axis since now we deal with a 
-		third dimension. These can be 
-		d) This will only work for small movements
-
-6. Smoothing the image first to attenuate any noise using Gaussian Smoothing as preprocessing
-
-7. Using an averaging/smoothing filter of 2x2 size to find the first derivative of the smoothed 
-	image. 
-
-8. Finding features to track using goodFeatureToTrack
-[Ref: http://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html]
-
-9. initialize the u and v vector array
-'''
 
 def LK_OpticalFlow(Image1, # Frame 1
 Image2, # Frame 1
